@@ -30,8 +30,6 @@ public class CSEventHandler
             // if there isnt anything in the file path, add the first event along with the set up brackets for a json file
             if (jsonFile.Count == 0)
             {
-                Debug.Log("File is empty, creating json file with event: " + eventName);
-
                 string lineToAdd = "";
                 // add the first line to the json file, should just be a {
                 lineToAdd = "{";
@@ -91,8 +89,7 @@ public class CSEventHandler
 
                         int eventFoundAtPos = mainSearchPos; // position in the file that the event was originally found
                         int endSearchPos = jsonFile.Count; // the position that the next event type in the JSON file was found
-
-                        Debug.Log("Found instance of " + eventName);
+                        
 
                         string endTag = "Time"; // currently this for looking for the time the event happened, this should be the last part of the event variable allowing us to insert an new event variable after it, continuing the array
                         int posOfInsert = 0;
@@ -121,8 +118,7 @@ public class CSEventHandler
                                 posOfInsert = j + 1;
                             }
                         }
-
-                        Debug.Log("Event type Already in JSON file" + " at pos: " + posOfInsert);
+                        
 
                         string lineToAdd = "";
 
@@ -243,7 +239,6 @@ public class CSEventHandler
             List<string> jsonFile = new List<string>();
             // the line position to add too
             int insertPos = 0;
-            Debug.Log("File doesnt exist, creating json file with event: " + eventName);
 
             string lineToAdd = "";
             // add the first line to the json file, should just be a {
@@ -308,7 +303,6 @@ public class CSEventHandler
             // if there isnt anything in the file path, add the first event along with the set up brackets for a json file
             if (jsonFile.Count == 0)
             {
-                Debug.Log("File is empty, creating json file with event: " + eventName);
 
                 string lineToAdd = "";
                 // add the first line to the json file, should just be a {
@@ -329,9 +323,67 @@ public class CSEventHandler
                 // now add the first event of that types variables
                 foreach (var ed in eventData)
                 {
-                    lineToAdd = ("\"" + ed.Key + "\"" + ":" + "\"" + ed.Value + "\"" + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
-                    jsonFile.Insert(insertPos, lineToAdd);
-                    insertPos++;
+                    // if is int
+                    if (ed.Value.GetType().Equals(typeof(int)))
+                    {
+                        lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                        jsonFile.Insert(insertPos, lineToAdd);
+                        insertPos++;
+                    }
+                    else if (ed.Value.GetType().Equals(typeof(uint)))
+                    {
+                        lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                        jsonFile.Insert(insertPos, lineToAdd);
+                        insertPos++;
+                    }
+                    else if (ed.Value.GetType().Equals(typeof(short)))
+                    {
+                        lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                        jsonFile.Insert(insertPos, lineToAdd);
+                        insertPos++;
+                    }
+                    else if (ed.Value.GetType().Equals(typeof(ushort)))
+                    {
+                        lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                        jsonFile.Insert(insertPos, lineToAdd);
+                        insertPos++;
+                    }
+                    else if (ed.Value.GetType().Equals(typeof(long)))
+                    {
+                        lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                        jsonFile.Insert(insertPos, lineToAdd);
+                        insertPos++;
+                    }
+                    else if (ed.Value.GetType().Equals(typeof(ulong)))
+                    {
+                        lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                        jsonFile.Insert(insertPos, lineToAdd);
+                        insertPos++;
+                    }
+                    else if (ed.Value.GetType().Equals(typeof(double)))
+                    {
+                        lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                        jsonFile.Insert(insertPos, lineToAdd);
+                        insertPos++;
+                    }
+                    else if (ed.Value.GetType().Equals(typeof(float)))
+                    {
+                        lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                        jsonFile.Insert(insertPos, lineToAdd);
+                        insertPos++;
+                    }
+                    else if (ed.Value.GetType().Equals(typeof(bool)))
+                    {
+                        lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value.ToString() + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                        jsonFile.Insert(insertPos, lineToAdd);
+                        insertPos++;
+                    }
+                    else
+                    {
+                        lineToAdd = ("\"" + ed.Key + "\"" + ":" + "\"" + ed.Value + "\"" + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                        jsonFile.Insert(insertPos, lineToAdd);
+                        insertPos++;
+                    }
                 }
 
                 // add the sessionID
@@ -378,8 +430,6 @@ public class CSEventHandler
                         int eventFoundAtPos = mainSearchPos; // position in the file that the event was originally found
                         int endSearchPos = jsonFile.Count; // the position that the next event type in the JSON file was found
 
-                        Debug.Log("Found instance of " + eventName);
-
                         string endTag = "Time"; // currently this for looking for the time the event happened, this should be the last part of the event variable allowing us to insert an new event variable after it, continuing the array
                         int posOfInsert = 0;
 
@@ -407,8 +457,7 @@ public class CSEventHandler
                                 posOfInsert = j + 1;
                             }
                         }
-
-                        Debug.Log("Event type Already in JSON file" + " at pos: " + posOfInsert);
+                        
 
                         string lineToAdd = "";
 
@@ -429,9 +478,67 @@ public class CSEventHandler
                         // now add the first event of that types variables
                         foreach (var ed in eventData)
                         {
-                            lineToAdd = ("\"" + ed.Key + "\"" + ":" + "\"" + ed.Value + "\"" + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
-                            jsonFile.Insert(newInsertPos, lineToAdd);
-                            newInsertPos++;
+                            // if is int
+                            if (ed.Value.GetType().Equals(typeof(int)))
+                            {
+                                lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                                jsonFile.Insert(newInsertPos, lineToAdd);
+                                newInsertPos++;
+                            }
+                            else if (ed.Value.GetType().Equals(typeof(uint)))
+                            {
+                                lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                                jsonFile.Insert(newInsertPos, lineToAdd);
+                                newInsertPos++;
+                            }
+                            else if (ed.Value.GetType().Equals(typeof(short)))
+                            {
+                                lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                                jsonFile.Insert(newInsertPos, lineToAdd);
+                                newInsertPos++;
+                            }
+                            else if (ed.Value.GetType().Equals(typeof(ushort)))
+                            {
+                                lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                                jsonFile.Insert(newInsertPos, lineToAdd);
+                                newInsertPos++;
+                            }
+                            else if (ed.Value.GetType().Equals(typeof(long)))
+                            {
+                                lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                                jsonFile.Insert(newInsertPos, lineToAdd);
+                                newInsertPos++;
+                            }
+                            else if (ed.Value.GetType().Equals(typeof(ulong)))
+                            {
+                                lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                                jsonFile.Insert(newInsertPos, lineToAdd);
+                                newInsertPos++;
+                            }
+                            else if (ed.Value.GetType().Equals(typeof(double)))
+                            {
+                                lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                                jsonFile.Insert(newInsertPos, lineToAdd);
+                                newInsertPos++;
+                            }
+                            else if (ed.Value.GetType().Equals(typeof(float)))
+                            {
+                                lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                                jsonFile.Insert(newInsertPos, lineToAdd);
+                                newInsertPos++;
+                            }
+                            else if (ed.Value.GetType().Equals(typeof(bool)))
+                            {
+                                lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value.ToString() + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                                jsonFile.Insert(newInsertPos, lineToAdd);
+                                newInsertPos++;
+                            }
+                            else
+                            {
+                                lineToAdd = ("\"" + ed.Key + "\"" + ":" + "\"" + ed.Value + "\"" + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                                jsonFile.Insert(newInsertPos, lineToAdd);
+                                newInsertPos++;
+                            }
                         }
 
                         // add the sessionID
@@ -497,9 +604,67 @@ public class CSEventHandler
                         // now add the first event of that types variables
                         foreach (var ed in eventData)
                         {
-                            lineToAdd = ("\"" + ed.Key + "\"" + ":" + "\"" + ed.Value + "\"" + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
-                            jsonFile.Insert(insertPos, lineToAdd);
-                            insertPos++;
+                            // if is int
+                            if (ed.Value.GetType().Equals(typeof(int)))
+                            {
+                                lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                                jsonFile.Insert(insertPos, lineToAdd);
+                                insertPos++;
+                            }
+                            else if (ed.Value.GetType().Equals(typeof(uint)))
+                            {
+                                lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                                jsonFile.Insert(insertPos, lineToAdd);
+                                insertPos++;
+                            }
+                            else if (ed.Value.GetType().Equals(typeof(short)))
+                            {
+                                lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                                jsonFile.Insert(insertPos, lineToAdd);
+                                insertPos++;
+                            }
+                            else if (ed.Value.GetType().Equals(typeof(ushort)))
+                            {
+                                lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                                jsonFile.Insert(insertPos, lineToAdd);
+                                insertPos++;
+                            }
+                            else if (ed.Value.GetType().Equals(typeof(long)))
+                            {
+                                lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                                jsonFile.Insert(insertPos, lineToAdd);
+                                insertPos++;
+                            }
+                            else if (ed.Value.GetType().Equals(typeof(ulong)))
+                            {
+                                lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                                jsonFile.Insert(insertPos, lineToAdd);
+                                insertPos++;
+                            }
+                            else if (ed.Value.GetType().Equals(typeof(double)))
+                            {
+                                lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                                jsonFile.Insert(insertPos, lineToAdd);
+                                insertPos++;
+                            }
+                            else if (ed.Value.GetType().Equals(typeof(float)))
+                            {
+                                lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                                jsonFile.Insert(insertPos, lineToAdd);
+                                insertPos++;
+                            }
+                            else if (ed.Value.GetType().Equals(typeof(bool)))
+                            {
+                                lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value.ToString() + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                                jsonFile.Insert(insertPos, lineToAdd);
+                                insertPos++;
+                            }
+                            else
+                            {
+                                lineToAdd = ("\"" + ed.Key + "\"" + ":" + "\"" + ed.Value + "\"" + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                                jsonFile.Insert(insertPos, lineToAdd);
+                                insertPos++;
+                            }
                         }
 
                         // add the sessionID
@@ -545,7 +710,6 @@ public class CSEventHandler
             List<string> jsonFile = new List<string>();
             // the line position to add too
             int insertPos = 0;
-            Debug.Log("File doesnt exist, creating json file with event: " + eventName);
 
             string lineToAdd = "";
             // add the first line to the json file, should just be a {
@@ -566,9 +730,67 @@ public class CSEventHandler
             // now add the first event of that types variables
             foreach (var ed in eventData)
             {
-                lineToAdd = ("\"" + ed.Key + "\"" + ":" + "\"" + ed.Value + "\"" + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
-                jsonFile.Insert(insertPos, lineToAdd);
-                insertPos++;
+                // if is int
+                if (ed.Value.GetType().Equals(typeof(int)))
+                {
+                    lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                    jsonFile.Insert(insertPos, lineToAdd);
+                    insertPos++;
+                }
+                else if (ed.Value.GetType().Equals(typeof(uint)))
+                {
+                    lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                    jsonFile.Insert(insertPos, lineToAdd);
+                    insertPos++;
+                }
+                else if (ed.Value.GetType().Equals(typeof(short)))
+                {
+                    lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                    jsonFile.Insert(insertPos, lineToAdd);
+                    insertPos++;
+                }
+                else if (ed.Value.GetType().Equals(typeof(ushort)))
+                {
+                    lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                    jsonFile.Insert(insertPos, lineToAdd);
+                    insertPos++;
+                }
+                else if (ed.Value.GetType().Equals(typeof(long)))
+                {
+                    lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                    jsonFile.Insert(insertPos, lineToAdd);
+                    insertPos++;
+                }
+                else if (ed.Value.GetType().Equals(typeof(ulong)))
+                {
+                    lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                    jsonFile.Insert(insertPos, lineToAdd);
+                    insertPos++;
+                }
+                else if (ed.Value.GetType().Equals(typeof(double)))
+                {
+                    lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                    jsonFile.Insert(insertPos, lineToAdd);
+                    insertPos++;
+                }
+                else if (ed.Value.GetType().Equals(typeof(float)))
+                {
+                    lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                    jsonFile.Insert(insertPos, lineToAdd);
+                    insertPos++;
+                }
+                else if (ed.Value.GetType().Equals(typeof(bool)))
+                {
+                    lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value.ToString() + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                    jsonFile.Insert(insertPos, lineToAdd);
+                    insertPos++;
+                }
+                else
+                {
+                    lineToAdd = ("\"" + ed.Key + "\"" + ":" + "\"" + ed.Value + "\"" + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                    jsonFile.Insert(insertPos, lineToAdd);
+                    insertPos++;
+                }
             }
 
             // add the sessionID

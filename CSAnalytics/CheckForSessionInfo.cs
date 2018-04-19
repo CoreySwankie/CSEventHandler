@@ -9,7 +9,6 @@ public class CheckForSessionInfo : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        Debug.Log(Application.dataPath);
         // if there is a session info in the game then just exit script
         if (FindObjectOfType<SessionInfo>())
         {

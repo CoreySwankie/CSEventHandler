@@ -374,7 +374,15 @@ public class CSEventHandler
                     }
                     else if (ed.Value.GetType().Equals(typeof(bool)))
                     {
-                        lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value.ToString() + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                        bool boolValue = (bool)ed.Value;
+                        if (boolValue == true)
+                        {
+                            lineToAdd = ("\"" + ed.Key + "\"" + ":" + "true" + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                        }
+                        else if(boolValue == false)
+                        {
+                            lineToAdd = ("\"" + ed.Key + "\"" + ":" + "false" + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                        }
                         jsonFile.Insert(insertPos, lineToAdd);
                         insertPos++;
                     }
@@ -529,7 +537,15 @@ public class CSEventHandler
                             }
                             else if (ed.Value.GetType().Equals(typeof(bool)))
                             {
-                                lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value.ToString() + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                                bool boolValue = (bool)ed.Value;
+                                if (boolValue == true)
+                                {
+                                    lineToAdd = ("\"" + ed.Key + "\"" + ":" + "true" + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                                }
+                                else if (boolValue == false)
+                                {
+                                    lineToAdd = ("\"" + ed.Key + "\"" + ":" + "false" + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                                }
                                 jsonFile.Insert(newInsertPos, lineToAdd);
                                 newInsertPos++;
                             }
@@ -655,7 +671,15 @@ public class CSEventHandler
                             }
                             else if (ed.Value.GetType().Equals(typeof(bool)))
                             {
-                                lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value.ToString() + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                                bool boolValue = (bool)ed.Value;
+                                if (boolValue == true)
+                                {
+                                    lineToAdd = ("\"" + ed.Key + "\"" + ":" + "true" + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                                }
+                                else if (boolValue == false)
+                                {
+                                    lineToAdd = ("\"" + ed.Key + "\"" + ":" + "false" + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                                }
                                 jsonFile.Insert(insertPos, lineToAdd);
                                 insertPos++;
                             }
@@ -781,7 +805,15 @@ public class CSEventHandler
                 }
                 else if (ed.Value.GetType().Equals(typeof(bool)))
                 {
-                    lineToAdd = ("\"" + ed.Key + "\"" + ":" + ed.Value.ToString() + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                    bool boolValue = (bool)ed.Value;
+                    if (boolValue == true)
+                    {
+                        lineToAdd = ("\"" + ed.Key + "\"" + ":" + "true" + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                    }
+                    else if (boolValue == false)
+                    {
+                        lineToAdd = ("\"" + ed.Key + "\"" + ":" + "false" + ","); // make sure there is a comma between the data, the last data type having a comma will be fine because all event data will then have a time stamp added to them
+                    }
                     jsonFile.Insert(insertPos, lineToAdd);
                     insertPos++;
                 }
